@@ -1,6 +1,7 @@
 package org.nsq.modelo;
 
 public class Producto {
+    //Atributos
     private String nombre;
     private double precio;
     private int cantidad;

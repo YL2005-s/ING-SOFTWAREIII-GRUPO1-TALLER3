@@ -18,6 +18,13 @@ public class PedidoTest {
     }
 
     @Test
+    void testListaNula() {
+        Exception ex = assertThrows(IllegalArgumentException.class,
+                () -> Pedido.calcularTotalPedido(null, 10));
+        assertEquals("Error: no hay productos en el pedido", ex.getMessage());
+    }
+
+    @Test
     void testSubtotalCero() {
         List<Producto> productos = List.of(new Producto("Libro", 0, 1));
         Exception ex = assertThrows(IllegalArgumentException.class,

@@ -25,9 +25,19 @@ public class Pedido {
     //Nuevo
     public boolean agregarProducto(Producto producto, int cantidad) {
         if (cantidad <= 0) {
-            System.err.println("Error: La cantidad a agregar debe ser positiva.");
-            return false;
+            //System.err.println("Error: La cantidad a agregar debe ser positiva.");
+            //return false;
+            if(cantidad <0){
+                throw new IllegalArgumentException("Error: precio no puede ser negativo");
+            }
         }
+        if (detallesPedido == null) {
+            throw new IllegalArgumentException("Error: no hay productos en el pedido");
+        }
+        if (detallesPedido.isEmpty()) {
+            throw new IllegalArgumentException("Error: lista vacia");
+        }
+
         // Busca si el producto ya existe en la lista
         boolean productoYaExiste = detallesPedido.stream()
                 .anyMatch(p -> p.getNombre().equals(producto.getNombre()));
@@ -40,9 +50,16 @@ public class Pedido {
         }
     }
     public boolean validarStock(Producto producto) {
+        if (detallesPedido == null) {
+            throw new IllegalArgumentException("Error: no hay productos en el pedido");
+        }
+        if (detallesPedido.isEmpty()) {
+            throw new IllegalArgumentException("Error: lista vacia");
+        }
         for (Producto producto1 : detallesPedido) {
             if (producto.getCantidad() <= 0) {//a
-                return false;
+                throw new IllegalArgumentException("Error: cantidad no puede ser negativo");
+                //return false;
             }
         }
         return true;

@@ -31,9 +31,6 @@ public class Producto {
     }
 
     public double getPrecio() {
-        if(precio<0){
-            throw new IllegalArgumentException("Error: precio no puede ser negativo");
-        }
         return precio;
     }
 
@@ -56,9 +53,6 @@ public class Producto {
     }
 
     public int getCantidad() {
-        if(cantidad<0){
-            throw new IllegalArgumentException("Error: cantidad no puede ser negativo");
-        }
         return cantidad;
     }
 

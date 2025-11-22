@@ -38,6 +38,17 @@ public class Pedido {
             throw new IllegalArgumentException("Error: lista vacia");
         }
 
+        if (!producto.isEsActivo()) {
+            throw new IllegalArgumentException("Error: producto inactivo");
+        }
+
+        for (Producto producto1 : detallesPedido) {
+            if (producto1.getSku().equals(producto.getSku())) {//a
+                throw new IllegalArgumentException("Error: sku duplicado");
+                //return false;
+            }
+        }
+
         // Busca si el producto ya existe en la lista
         boolean productoYaExiste = detallesPedido.stream()
                 .anyMatch(p -> p.getNombre().equals(producto.getNombre()));

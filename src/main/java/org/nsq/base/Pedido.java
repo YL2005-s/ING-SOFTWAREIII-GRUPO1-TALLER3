@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Pedido {
 
-    private List<Producto> detallesPedido;
+    private static List<Producto> detallesPedido;
 
     public static double calcularTotalPedido(List<Producto> productos, double descuento) {
         if (productos == null || productos.isEmpty()) {
@@ -23,7 +23,7 @@ public class Pedido {
     }
 
     //Nuevo
-    public boolean agregarProducto(Producto producto, int cantidad) {
+    public static boolean agregarProducto(Producto producto, int cantidad) {
         if (cantidad <= 0) {
             //System.err.println("Error: La cantidad a agregar debe ser positiva.");
             //return false;

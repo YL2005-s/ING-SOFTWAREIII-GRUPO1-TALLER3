@@ -1,5 +1,6 @@
 package grupo1;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.nsq.base.Pedido;
 import org.nsq.modelo.Producto;
@@ -9,6 +10,16 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PedidoTest {
+
+    @BeforeEach
+    void setUp() {
+        List<Producto> detallespedidos = List.of(
+                new Producto("Laptop", 2500, 1, "123","ti", true,true),
+                new Producto("Mini Pc", 2500, 1, "123","ti", true,true),
+                new Producto("Telefono", 2500, 1, "123","ti", true,true),
+                new Producto("Mouse", 100, 2)
+        );
+    }
 
     @Test
     void testListaVacia() {
@@ -54,5 +65,16 @@ public class PedidoTest {
         );
         double total = Pedido.calcularTotalPedido(productos, 10);
         assertEquals(180.0, total);
+    }
+
+    @Test
+    void testSkuDuplicado() {
+        List<Producto> detallespedidos = List.of(
+                new Producto("Laptop", 2500, 1, "123","ti", true,true),
+                new Producto("Mini Pc", 2500, 1, "123","ti", true,true),
+                new Producto("Telefono", 2500, 1, "123","ti", true,true),
+                new Producto("Mouse", 100, 2)
+        );
+        assertThrows(IllegalArgumentException.class, () -> Pedido.agregarProducto((Producto) detallespedidos, 10));
     }
 }

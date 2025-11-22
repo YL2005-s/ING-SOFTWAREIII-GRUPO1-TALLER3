@@ -41,7 +41,7 @@ public class Pedido {
     }
     public boolean validarStock(Producto producto) {
         for (Producto producto1 : detallesPedido) {
-            if (producto.getCantidad() <= 0) {
+            if (producto.getCantidad() <= 0) {//a
                 return false;
             }
         }
